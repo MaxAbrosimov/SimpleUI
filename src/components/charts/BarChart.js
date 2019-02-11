@@ -1,39 +1,21 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Bar} from 'react-chartjs-2';
 
-class Chart extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            chartData:props.chartData
-        }
-    }
+const BarChart = ({chartData, displayTitle, location, displayLegend, legendPosition}) => (
+    <Bar
+        data={chartData}
+        options={{
+            title:{
+                display: displayTitle,
+                text: 'Largest Cities In '+ location,
+                fontSize: 25
+            },
+            legend:{
+                display: displayLegend,
+                position: legendPosition
+            }
+        }}
+    />
+)
 
-    static defaultProps = {
-        displayTitle:true,
-        displayLegend: true,
-        legendPosition:'right',
-        location:'City'
-    }
-
-    render(){
-        return (
-            <Bar
-                data={this.state.chartData}
-                options={{
-                    title:{
-                        display:this.props.displayTitle,
-                        text:'Largest Cities In '+this.props.location,
-                        fontSize:25
-                    },
-                    legend:{
-                        display:this.props.displayLegend,
-                        position:this.props.legendPosition
-                    }
-                }}
-            />
-        )
-    }
-}
-
-export default Chart;
+export default BarChart;

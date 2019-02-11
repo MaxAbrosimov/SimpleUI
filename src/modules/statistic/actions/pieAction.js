@@ -1,6 +1,7 @@
 import { FETCH_DATA, DATA_LOADED } from '../constants/ActionTypes';
 
 const staticData = {
+    location: 'Massachusetts',
     chartData:{
         labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
         datasets:[
@@ -31,6 +32,6 @@ const staticData = {
 export function loadData() {
     return function(dispatch){
         dispatch({ type: FETCH_DATA });
-        return dispatch({ type: DATA_LOADED, data : staticData.chartData });
+        return dispatch({ type: DATA_LOADED, data : staticData });
     }
 }

@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./src/config-dev.json');
 
 module.exports = {
+    mode: 'development',
+
     performance: {
         hints: process.env.NODE_ENV === 'production' ? "warning" : false
     },

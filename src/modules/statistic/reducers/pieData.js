@@ -17,7 +17,7 @@ export default function pieReducer(state = initialState, action) {
         case DATA_LOADED:
             return {
                 ...state,
-                chartData: action.data,
+                data: action.data,
                 isFetching: false,
                 isLoaded: true
             };

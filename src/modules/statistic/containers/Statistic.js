@@ -21,13 +21,13 @@ class StatisticCmp extends Component {
                 {
                     !this.props.pie.isFetching && this.props.pie.isLoaded &&
                     (<div style={{width: '50%'}}>
-                        <LineChart chartData={this.props.pie.chartData} location="Massachusetts" legendPosition="bottom"/>
+                        <LineChart {...this.props.pie.data} legendPosition="bottom" displayTitle="true" />
                     </div>)
                 }
                 {
                     !this.props.line.isFetching && this.props.line.isLoaded &&
                     (<div style={{width: '50%'}}>
-                        <PieChart chartData={this.props.line.chartData} location="Massachusetts" legendPosition="bottom"/>
+                        <PieChart {...this.props.line.data} legendPosition="bottom" displayTitle="true"/>
                      </div>)
                 }
                 </div>
@@ -35,7 +35,7 @@ class StatisticCmp extends Component {
                 {
                     !this.props.pie.isFetching && this.props.pie.isLoaded &&
                     (<div style={{width: '50%'}}>
-                        <BarChart chartData={this.props.pie.chartData} location="Massachusetts" legendPosition="bottom"/>
+                        <BarChart {...this.props.pie.data} legendPosition="bottom" displayTitle="true"/>
                     </div>)
                 }
                 </div>
