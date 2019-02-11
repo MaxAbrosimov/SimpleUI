@@ -1,14 +1,13 @@
 var path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractPlugin = new ExtractTextPlugin({
-    filename: './style.css'
-});
 
 const config = require('./src/config-dev.json');
 
 module.exports = {
+    performance: {
+        hints: process.env.NODE_ENV === 'production' ? "warning" : false
+    },
     entry: [
         'react-hot-loader/patch',
         "./index.js"
@@ -37,7 +36,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
-        extractPlugin,
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             config: JSON.stringify(config)
@@ -74,10 +72,6 @@ module.exports = {
             test: /\.scss$/,
             include: /src/,
             exclude: /node_modules/,
-            use: extractPlugin.extract({
-                use: ["css-loader", "sass-loader", "postcss-loader"],
-                fallback: 'style-loader'
-            })
         }]
     }
 };
