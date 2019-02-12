@@ -1,8 +1,8 @@
 import React from 'react';
-import {Pie} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 
-const PieChart = ({chartData, title, displayLegend, legendPosition = 'bottom'}) => (
-    <Pie
+const DoughnutChart = ({chartData, title, displayLegend, legendPosition = 'bottom'}) => (
+    <Doughnut
         data={chartData}
         options={{
             title:{
@@ -19,4 +19,4 @@ const PieChart = ({chartData, title, displayLegend, legendPosition = 'bottom'}) 
 );
 
 
-export default PieChart;
+export default DoughnutChart;

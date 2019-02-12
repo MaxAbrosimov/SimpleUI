@@ -1,13 +1,13 @@
 import React from 'react';
 import {Line} from 'react-chartjs-2';
 
-const LineChart = ({chartData, displayTitle, location, displayLegend, legendPosition}) => (
+const LineChart = ({chartData, title, displayLegend, legendPosition = 'bottom'}) => (
     <Line
         data={chartData}
         options={{
             title:{
-                display: displayTitle,
-                text:'Largest Cities In '+ location,
+                display: !!title,
+                text: title,
                 fontSize:25
             },
             legend:{

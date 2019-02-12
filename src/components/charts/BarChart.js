@@ -1,13 +1,13 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
 
-const BarChart = ({chartData, displayTitle, location, displayLegend, legendPosition}) => (
+const BarChart = ({chartData, title, displayLegend, legendPosition = 'bottom'}) => (
     <Bar
         data={chartData}
         options={{
             title:{
-                display: displayTitle,
-                text: 'Largest Cities In '+ location,
+                display: !!title,
+                text: title,
                 fontSize: 25
             },
             legend:{
@@ -16,6 +16,6 @@ const BarChart = ({chartData, displayTitle, location, displayLegend, legendPosit
             }
         }}
     />
-)
+);
 
 export default BarChart;

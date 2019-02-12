@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavBar } from './modules/';
 
 const App = ({ children, location }) => (
-  <div className="App">
+  <div>
     <NavBar path={location.pathname} />
     {children}
   </div>

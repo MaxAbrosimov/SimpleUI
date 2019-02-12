@@ -1,4 +1,4 @@
-import { FETCH_DATA, DATA_LOADED } from '../constants/ActionTypes';
+import { FETCH_LINE_DATA, LINE_DATA_LOADED } from '../constants/ActionTypes';
 
 const initialState = {
     isFetching: false,
@@ -8,13 +8,13 @@ const initialState = {
 export default function lineReducer(state = initialState, action) {
     switch(action.type) {
 
-        case FETCH_DATA:
+        case FETCH_LINE_DATA:
             return {
                 ...initialState,
                 isFetching: true
             };
 
-        case DATA_LOADED:
+        case LINE_DATA_LOADED:
             return {
                 ...state,
                 data: action.data,

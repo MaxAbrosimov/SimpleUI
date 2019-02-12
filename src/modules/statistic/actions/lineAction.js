@@ -1,4 +1,4 @@
-import { FETCH_PIE_DATA, PIE_DATA_LOADED } from '../constants/ActionTypes';
+import { FETCH_LINE_DATA, LINE_DATA_LOADED } from '../constants/ActionTypes';
 
 const staticData = {
     title: 'Population In Massachusetts at 1919 and 2019',
@@ -24,6 +24,17 @@ const staticData = {
                     'rgba(255, 159, 64, 0.6)',
                     'rgba(255, 99, 132, 0.6)'
                 ]
+            },
+            {
+                label:'Population',
+                data:[
+                    617594,
+                    181045,
+                    153060,
+                    106519,
+                    105162,
+                    95072
+                ]
             }
         ]
     }
@@ -31,7 +42,7 @@ const staticData = {
 
 export function loadData() {
     return function(dispatch){
-        dispatch({ type: FETCH_PIE_DATA });
-        return dispatch({ type: PIE_DATA_LOADED, data : staticData });
+        dispatch({ type: FETCH_LINE_DATA });
+        return dispatch({ type: LINE_DATA_LOADED, data : staticData });
     }
 }

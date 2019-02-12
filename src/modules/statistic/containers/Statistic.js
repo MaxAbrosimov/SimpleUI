@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import LineChart from 'src/components/charts/LineChart';
 import PieChart from 'src/components/charts/PieChart';
+import DoughnutChart from 'src/components/charts/DoughnutChart';
 import BarChart from 'src/components/charts/BarChart';
 import {connect} from 'react-redux';
-import * as actionCreators from '../actions/pieAction';
+import {bindActionCreators} from 'redux';
+import * as pieActions from '../actions/pieAction';
+import * as barActions from '../actions/barAction';
+import * as lineActions from '../actions/lineAction';
 
 class StatisticCmp extends Component {
     constructor(){
@@ -11,7 +15,9 @@ class StatisticCmp extends Component {
     }
 
     componentDidMount(){
-        this.props.loadData()
+        this.props.pieActions.loadData();
+        this.props.barActions.loadData();
+        this.props.lineActions.loadData();
     }
 
     render() {
@@ -19,23 +25,31 @@ class StatisticCmp extends Component {
             <div>
                 <div style={{display: 'flex'}}>
                 {
-                    !this.props.pie.isFetching && this.props.pie.isLoaded &&
+                    !this.props.line.isFetching && this.props.line.isLoaded &&
                     (<div style={{width: '50%'}}>
-                        <LineChart {...this.props.pie.data} legendPosition="bottom" displayTitle="true" />
+                        <LineChart {...this.props.line.data}/>
                     </div>)
                 }
                 {
-                    !this.props.line.isFetching && this.props.line.isLoaded &&
+                    !this.props.bar.isFetching && this.props.bar.isLoaded &&
                     (<div style={{width: '50%'}}>
-                        <PieChart {...this.props.line.data} legendPosition="bottom" displayTitle="true"/>
-                     </div>)
+                        <BarChart {...this.props.bar.data}/>
+                    </div>)
                 }
                 </div>
                 <div style={{display: 'flex'}}>
                 {
+
                     !this.props.pie.isFetching && this.props.pie.isLoaded &&
                     (<div style={{width: '50%'}}>
-                        <BarChart {...this.props.pie.data} legendPosition="bottom" displayTitle="true"/>
+                        <PieChart {...this.props.pie.data}/>
+                    </div>)
+                }
+                {
+
+                    !this.props.pie.isFetching && this.props.pie.isLoaded &&
+                    (<div style={{width: '50%'}}>
+                        <DoughnutChart {...this.props.pie.data}/>
                     </div>)
                 }
                 </div>
@@ -44,15 +58,20 @@ class StatisticCmp extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        pie: state.statistic.pieData,
-        line: state.statistic.lineData,
-    }
-}
+const mapStateToProps = (state) => ({
+    pie: state.statistic.pieData,
+    line: state.statistic.lineData,
+    bar: state.statistic.barData,
+});
 
 
-const Statistic = connect(mapStateToProps, actionCreators)(StatisticCmp);
+const mapDispatchToProps = dispatch => ({
+    pieActions: bindActionCreators(pieActions, dispatch),
+    barActions: bindActionCreators(barActions, dispatch),
+    lineActions: bindActionCreators(lineActions, dispatch)
+});
+
+const Statistic = connect(mapStateToProps, mapDispatchToProps)(StatisticCmp);
 
 export default Statistic;
 
