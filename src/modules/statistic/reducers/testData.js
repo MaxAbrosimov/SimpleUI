@@ -17,7 +17,6 @@ const convertLineData = data => {
         labels.push(convertTimestampToDate(t.timestamp));
     });
     return {
-        title: 'Population In Massachusetts at 1919 and 2019',
         chartData: {
             labels,
             datasets: [
@@ -35,7 +34,6 @@ const convertLineData = data => {
 };
 
 const convertChartData = data => ({
-    title: 'Population In Massachusetts at 1919 and 2019',
     chartData: {
         labels: ['fail', 'success', 'skipped'],
         datasets: [
