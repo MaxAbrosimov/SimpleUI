@@ -17,12 +17,16 @@ const styles = {
 const NavBar = ({ path }) => (
   <Menu style={styles.menu}>
     <Menu.Menu>
-      <Menu.Item onClick={() => browserHistory.push(ROUTES.HOME)}>
-      </Menu.Item>
-      <Menu.Item sstyle={styles.item} active={path === ROUTES.STATISTIC} onClick={() => browserHistory.push(ROUTES.STATISTIC)}>
-         Statistic
-      </Menu.Item>
+      <Menu.Item onClick={() => browserHistory.push(ROUTES.HOME)}/>
     </Menu.Menu>
+      <Menu.Menu>
+          <Menu.Item style={styles.item} active={path === ROUTES.DEMO} onClick={() => browserHistory.push(ROUTES.DEMO)}>
+              <span>Demo</span>
+          </Menu.Item>
+          <Menu.Item style={styles.item} active={path === ROUTES.STATISTIC} onClick={() => browserHistory.push(ROUTES.STATISTIC)}>
+              <span>Statistic</span>
+          </Menu.Item>
+      </Menu.Menu>
     <Menu.Menu position="right">
       <Menu.Item style={styles.item} active={path === ROUTES.SIGNUP} onClick={() => browserHistory.push(ROUTES.SIGNUP)}>
         Sign Up
