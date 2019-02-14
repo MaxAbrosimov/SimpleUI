@@ -37,12 +37,12 @@ const convertLineData = data => {
 
 const convertChartData = data => ({
     chartData: {
-        labels: ['fail', 'success', 'skipped'],
+        labels: ['success', 'fail', 'skipped'],
         datasets: [
             {
-                data: [data.fail, data.success, data.skipped],
-                backgroundColor: ['#FF6363', '#81D57D '],
-                hoverBackgroundColor:['#FF6363', '#81D57D ']
+                data: [ data.success, data.fail, data.skipped],
+                backgroundColor: ['#81D57D', '#FF6363', '#46434A'],
+                hoverBackgroundColor: ['#81D57D', '#FF6363', '#46434A']
             }
         ]
     }

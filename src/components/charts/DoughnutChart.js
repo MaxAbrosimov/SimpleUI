@@ -6,6 +6,7 @@ const DoughnutChart = ({chartData, height, title, displayLegend, legendPosition 
         data={chartData}
         height={height}
         options={{
+            rotation: 2.5,
             title:{
                 display: !!title,
                 text: title,
