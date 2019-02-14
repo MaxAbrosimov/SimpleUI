@@ -1,7 +1,6 @@
 var path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const config = require('./src/config-dev.json');
 
 module.exports = {
@@ -74,6 +73,12 @@ module.exports = {
             test: /\.scss$/,
             include: /src/,
             exclude: /node_modules/,
-        }]
+        },
+        {
+            test: /\.css$/,
+            exclude: /node_modules/,
+            use: ['style-loader', 'css-loader'],
+        }
+        ]
     }
 };

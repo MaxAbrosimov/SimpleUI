@@ -22,11 +22,13 @@ const convertLineData = data => {
             datasets: [
                 {
                     data: fail,
-                    backgroundColor: '#FF6363'
+                    backgroundColor: 'rgba(255,99,99, 0.1)',
+                    borderColor: "rgba(255,99,99)",
                 },
                 {
                     data: success,
-                    backgroundColor: '#81D57D'
+                    backgroundColor: 'rgba(129,213,125, 0.1)',
+                    borderColor: "rgba(129,213,125)",
                 }
             ]
         },
@@ -39,7 +41,8 @@ const convertChartData = data => ({
         datasets: [
             {
                 data: [data.fail, data.success, data.skipped],
-                backgroundColor: ['#FF6363', '#81D57D']
+                backgroundColor: ['#FF6363', '#81D57D '],
+                hoverBackgroundColor:['#FF6363', '#81D57D ']
             }
         ]
     }

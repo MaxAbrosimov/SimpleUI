@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { Dimmer, Segment, Loader } from 'semantic-ui-react';
+import 'src/styles.css';
+
 import * as testActions from '../actions/testAction';
 import TestPresentation from '../components/TestPresentation';
+import '../styles.css';
 
 class StatisticCmp extends Component {
     constructor(){
@@ -18,17 +21,16 @@ class StatisticCmp extends Component {
         const {test} = this.props;
         const isLoaded = test.isFetching || !test.isLoaded;
         return (
-            <div>
-                <Segment style={{height: 400}}>
-                    <Dimmer active={isLoaded}>
-                        <Loader active={isLoaded}/>
-                    </Dimmer>
-                    {!isLoaded && (
+            <Segment className="Top-Segment Main-Color">
+                <Dimmer active={isLoaded}>
+                    <Loader active={isLoaded}/>
+                </Dimmer>
+                {!isLoaded && (
+                    <div>
                         <TestPresentation chartData={test.chartData} lineData={test.lineData} />
-                    )}
-                </Segment>
-
-            </div>
+                    </div>
+                )}
+            </Segment>
         );
     }
 }

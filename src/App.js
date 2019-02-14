@@ -1,19 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavBar } from './modules/';
-
-const styles = {
-    children: {
-        width: 1440,
-        margin: 'auto'
-    }
-};
-
+import './styles.css';
 
 const App = ({ children, location }) => (
-  <div>
+  <div className="App">
     <NavBar path={location.pathname} />
-    <div style={styles.children}>
+    <div>
         {children}
     </div>
   </div>

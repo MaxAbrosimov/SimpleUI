@@ -1,17 +1,18 @@
 import React from 'react';
 import DoughnutChart from "src/components/charts/DoughnutChart";
 import LineChart from "src/components/charts/LineChart";
+import '../styles.css'
 
 const TestPresentation = ({chartData, lineData}) => (
-    <div style={{display: 'flex'}}>
+    <div className="Flex">
         {
-            (<div style={{width: '50%'}}>
-                <DoughnutChart {...chartData}/>
+            (<div className="Test-Presentation">
+                <DoughnutChart {...chartData} />
             </div>)
         }
         {
-            (<div style={{width: '50%'}}>
-                <LineChart {...lineData}/>
+            (<div className="Width-Half">
+                <LineChart {...lineData} height={100}/>
             </div>)
         }
     </div>

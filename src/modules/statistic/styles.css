@@ -1,0 +1,18 @@
+.Top-Segment {
+  height: 400px;
+}
+
+.Test-Presentation {
+  width: 25%;
+  height: 200px;
+  margin-top: auto;
+  margin-bottom: auto
+}
+
+.Flex {
+  display: flex;
+}
+
+.Width-Half {
+  width: 50%
+}
