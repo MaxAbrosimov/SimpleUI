@@ -1,18 +1,32 @@
-.Top-Segment {
+.Top-Segment{
   height: 400px;
 }
 
-.Test-Presentation {
+.Total-Doughnut {
   width: 25%;
-  height: 200px;
   margin-top: auto;
   margin-bottom: auto
 }
 
 .Flex {
   display: flex;
+  height: 100%!important;
 }
 
 .Width-Half {
-  width: 50%
+  width: 75%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.Margin-Auto {
+  margin: auto;
+}
+
+.Margin-0 {
+  margin: 0!important;
+}
+
+.Env-test-item {
+  height: 150px;
 }

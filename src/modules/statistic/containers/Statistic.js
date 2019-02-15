@@ -1,42 +1,49 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { Dimmer, Segment, Loader } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 import 'src/styles.css';
 
 import * as testActions from '../actions/testAction';
-import TestPresentation from '../components/TestPresentation';
+import TotalPresentation from '../components/TestPresentation';
+import TestsPresentation from '../components/TestsPresentation';
 import '../styles.css';
 
 class StatisticCmp extends Component {
     constructor(){
         super();
+
     }
 
     componentDidMount(){
         this.props.testActions.loadData();
+        this.props.testActions.loadEnvironment();
     }
 
     render() {
-        const {test} = this.props;
-        const isLoaded = test.isFetching || !test.isLoaded;
+        const {env, test, testActions} = this.props;
         return (
-            <Segment className="Top-Segment Main-Color">
-                <Dimmer active={isLoaded}>
-                    <Loader active={isLoaded}/>
-                </Dimmer>
-                {!isLoaded && (
-                    <div>
-                        <TestPresentation chartData={test.chartData} lineData={test.lineData} />
-                    </div>
-                )}
-            </Segment>
+            <div>
+                <Segment className="Top-Segment Main-Color Margin-0">
+                    <TotalPresentation
+                        key="total"
+                        chartData={test.chartData}
+                        lineData={test.lineData}
+                        isFetching={test.isFetching || !test.isLoaded}
+                    />
+                </Segment>
+                <Segment className="Margin-0">
+                    <TestsPresentation {...env} loadEnvironmentTestData={testActions.loadEnvironmentTestData}/>
+                </Segment>
+
+            </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
     test: state.statistic.testData,
+    env: state.statistic.envData,
 });
 
 

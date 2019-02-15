@@ -1,11 +1,14 @@
 import React from 'react';
 import {Line} from 'react-chartjs-2';
 
-const LineChart = ({chartData, title, height, displayLegend, legendPosition = 'bottom'}) => (
+const LineChart = ({ chartData, title, height, displayLegend, legendPosition = 'bottom'}) => (
     <Line
+        datasetKeyProvider={Math.random}
         data={chartData}
         height={height}
         options={{
+            responsive: true,
+            maintainAspectRatio: false,
             title:{
                 display: !!title,
                 text: title,

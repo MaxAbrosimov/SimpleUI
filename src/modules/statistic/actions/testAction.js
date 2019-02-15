@@ -1,4 +1,10 @@
-import { FETCH_TEST_DATA, TEST_DATA_LOADED } from '../constants/ActionTypes';
+import { FETCH_ENV_DATA,
+    FETCH_TEST_DATA,
+    FETCH_ENV_TEST_DATA,
+    ENV_DATA_LOADED,
+    TEST_DATA_LOADED,
+    ENV_TEST_DATA_LOADED
+} from '../constants/ActionTypes';
 
 const staticTestData = {
     total: {
@@ -45,6 +51,128 @@ const staticTestData = {
         }
     ]
 };
+
+const staticEnvData = [
+    {
+        envId: 1,
+        name: 'Test env 1'
+    },
+    {
+        envId: 2,
+        name: 'Test env 2'
+    }
+];
+
+const staticEnvTestData = [
+    {
+        envId: 1,
+        total: {
+            success: 14,
+            fail: 1,
+            skipped: 10
+        },
+        time: [
+            {
+                timestamp: 1546300800,
+                success: 9,
+                fail: 3,
+                skipped: 10
+            },
+            {
+                timestamp: 1546387200,
+                success: 10,
+                fail: 2,
+                skipped: 10
+            },
+            {
+                timestamp: 1546473600,
+                success: 10,
+                fail: 2,
+                skipped: 10
+            },
+            {
+                timestamp: 1546560000,
+                success: 12,
+                fail: 2,
+                skipped: 10
+            },
+            {
+                timestamp: 1546646400,
+                success: 14,
+                fail: 0,
+                skipped: 10
+            },
+            {
+                timestamp: 1546732800,
+                success: 14,
+                fail: 0,
+                skipped: 10
+            }
+        ]
+    },
+    {
+        envId: 2,
+        total: {
+            success: 27,
+            fail: 0,
+            skipped: 3
+        },
+        time: [
+            {
+                timestamp: 1546300800,
+                success: 20,
+                fail: 5,
+                skipped: 5
+            },
+            {
+                timestamp: 1546387200,
+                success: 21,
+                fail: 4,
+                skipped: 5
+            },
+            {
+                timestamp: 1546473600,
+                success: 22,
+                fail: 3,
+                skipped: 5
+            },
+            {
+                timestamp: 1546560000,
+                success: 25,
+                fail: 0,
+                skipped: 5
+            },
+            {
+                timestamp: 1546646400,
+                success: 25,
+                fail: 0,
+                skipped: 5
+            },
+            {
+                timestamp: 1546732800,
+                success: 27,
+                fail: 0,
+                skipped: 3
+            }
+        ]
+    }
+];
+
+export function loadEnvironmentTestData(envId) {
+    return function(dispatch){
+        dispatch({ type: FETCH_ENV_TEST_DATA, envId });
+        return dispatch({ type: ENV_TEST_DATA_LOADED, environmentData : staticEnvTestData.find(data => data.envId === envId) });
+    }
+}
+
+
+export function loadEnvironment() {
+    return function(dispatch){
+        dispatch({ type: FETCH_ENV_DATA });
+        return dispatch({ type: ENV_DATA_LOADED, environment : staticEnvData });
+    }
+}
+
 
 export function loadData() {
     return function(dispatch){
