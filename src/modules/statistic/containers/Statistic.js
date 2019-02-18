@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { Segment } from 'semantic-ui-react';
 import 'src/styles.css';
-
+import {WHITE} from "src/constants/COLORS";
 import * as testActions from '../actions/testAction';
 import TotalPresentation from '../components/TestPresentation';
 import TestsPresentation from '../components/TestsPresentation';
@@ -26,10 +26,19 @@ class StatisticCmp extends Component {
             <div>
                 <Segment className="Top-Segment Main-Color Margin-0">
                     <TotalPresentation
-                        key="total"
-                        chartData={test.chartData}
+                        chartData={{
+                            ...test.chartData,
+                            chartData: test.chartData && test.chartData.chartData && {
+                                ...test.chartData.chartData,
+                                centerConfig: {
+                                    ...test.chartData.chartData.centerConfig,
+                                    color: WHITE
+                                }
+                            }
+                        }}
                         lineData={test.lineData}
                         isFetching={test.isFetching || !test.isLoaded}
+                        tickColor={WHITE}
                     />
                 </Segment>
                 <Segment className="Margin-0">

@@ -4,7 +4,7 @@ import LineChart from "src/components/charts/LineChart";
 import '../styles.css'
 import {Dimmer, Loader} from "semantic-ui-react";
 
-const TestPresentation = ({height, chartData, lineData, isFetching}) => (
+const TestPresentation = ({height, chartData, lineData, isFetching, tickColor}) => (
     <div style={{height: '100%'}}>
         <Dimmer active={isFetching}>
             <Loader active={isFetching}/>
@@ -15,7 +15,7 @@ const TestPresentation = ({height, chartData, lineData, isFetching}) => (
                     <DoughnutChart {...chartData} height={height}/>
                 </div>
                 <div className="Width-Half">
-                    <LineChart {...lineData} height={height}/>
+                    <LineChart {...lineData} height={height} tickColor={tickColor}/>
                 </div>
             </div>
         )}

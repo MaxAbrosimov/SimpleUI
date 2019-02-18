@@ -1,7 +1,8 @@
 import React from 'react';
 import {Line} from 'react-chartjs-2';
+import {SNOW} from "src/constants/COLORS";
 
-const LineChart = ({ chartData, title, height, displayLegend, legendPosition = 'bottom'}) => (
+const LineChart = ({ chartData, title, height, displayLegend, legendPosition = 'bottom', tickColor = SNOW}) => (
     <Line
         datasetKeyProvider={Math.random}
         data={chartData}
@@ -21,7 +22,7 @@ const LineChart = ({ chartData, title, height, displayLegend, legendPosition = '
             scales: {
                 yAxes: [{
                     ticks: {
-                        fontColor: "white",
+                        fontColor: tickColor,
                         fontSize: 12,
                         beginAtZero: true
                     }
@@ -30,7 +31,7 @@ const LineChart = ({ chartData, title, height, displayLegend, legendPosition = '
                     {
                         position: 'top',
                         ticks: {
-                            fontColor: "white",
+                            fontColor: tickColor,
                             fontSize: 12,
                             beginAtZero: true
                         }

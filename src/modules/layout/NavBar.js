@@ -5,27 +5,29 @@ import { browserHistory } from 'react-router';
 import * as ROUTES from 'src/constants/ROUTES';
 import './styles.css';
 import 'src/styles.css';
+import {WHITE} from "src/constants/COLORS";
+
+const renderMenuItem = (route, path) => (
+    <Menu.Item
+        name={route.name}
+        style={{color: WHITE}}
+        active={path === route.path}
+        onClick={() => browserHistory.push(route)}
+    />
+);
 
 const NavBar = ({ path }) => (
     <Menu className="NavBar Main-Color">
         <Menu.Menu>
-            <Menu.Item onClick={() => browserHistory.push(ROUTES.HOME)}/>
+            {renderMenuItem(ROUTES.HOME, path)}
         </Menu.Menu>
         <Menu.Menu >
-            <Menu.Item active={path === ROUTES.DEMO} onClick={() => browserHistory.push(ROUTES.DEMO)}>
-                <span className="Text-White">Demo</span>
-            </Menu.Item>
-            <Menu.Item active={path === ROUTES.STATISTIC} onClick={() => browserHistory.push(ROUTES.STATISTIC)}>
-                <span className="Text-White">Statistic</span>
-            </Menu.Item>
+            {renderMenuItem(ROUTES.DEMO, path)}
+            {renderMenuItem(ROUTES.STATISTIC, path)}
         </Menu.Menu>
         <Menu.Menu position="right">
-            <Menu.Item active={path === ROUTES.SIGNUP} onClick={() => browserHistory.push(ROUTES.SIGNUP)}>
-                <span className="Text-White">Sign Up</span>
-            </Menu.Item>
-            <Menu.Item active={path === ROUTES.LOGIN} onClick={() => browserHistory.push(ROUTES.LOGIN)}>
-                <span className="Text-White">Login</span>
-            </Menu.Item>
+            {renderMenuItem(ROUTES.SIGNUP, path)}
+            {renderMenuItem(ROUTES.LOGIN, path)}
         </Menu.Menu>
     </Menu>
 );

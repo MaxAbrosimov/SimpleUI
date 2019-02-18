@@ -1,4 +1,5 @@
 import {convertTimestampToDate} from "src/utils/timeUtils";
+import {SUCCESS, SUCCESS_OPACITY, FAIL, FAIL_OPACITY} from "src/constants/COLORS";
 
 export const convertLineData = data => {
     const success = [];
@@ -15,13 +16,13 @@ export const convertLineData = data => {
             datasets: [
                 {
                     data: fail,
-                    backgroundColor: 'rgba(255,99,99, 0.1)',
-                    borderColor: "rgba(255,99,99)",
+                    backgroundColor: FAIL_OPACITY,
+                    borderColor: FAIL,
                 },
                 {
                     data: success,
-                    backgroundColor: 'rgba(129,213,125, 0.1)',
-                    borderColor: "rgba(129,213,125)",
+                    backgroundColor: SUCCESS_OPACITY,
+                    borderColor: SUCCESS,
                 }
             ]
         },
@@ -31,11 +32,14 @@ export const convertLineData = data => {
 export const convertChartData = data => ({
     chartData: {
         labels: ['success', 'fail', 'skipped'],
+        centerConfig: {
+            text: data.success + data.fail + data.skipped + ' Tests',
+        },
         datasets: [
             {
                 data: [ data.success, data.fail, data.skipped],
-                backgroundColor: ['#81D57D', '#FF6363'],
-                hoverBackgroundColor: ['#81D57D', '#FF6363']
+                backgroundColor: [SUCCESS, FAIL],
+                hoverBackgroundColor: [SUCCESS, FAIL],
             }
         ]
     }

@@ -7,12 +7,12 @@ import * as ROUTES from 'src/constants/ROUTES';
 
 export default () => (
   <Router history={history}>
-    <Route path={ROUTES.HOME} component={App}>
+    <Route path={ROUTES.HOME.path} component={App}>
       <IndexRoute component={HomeView} />
-      <Route path={ROUTES.DEMO} component={Demo} />
-      <Route path={ROUTES.STATISTIC} component={Statistic} />
-      <Route path={ROUTES.LOGIN} component={Login} />
-      <Route path={ROUTES.SIGNUP} component={Signup} />
+      <Route path={ROUTES.DEMO.path} component={Demo} />
+      <Route path={ROUTES.STATISTIC.path} component={Statistic} />
+      <Route path={ROUTES.LOGIN.path} component={Login} />
+      <Route path={ROUTES.SIGNUP.path} component={Signup} />
     </Route>
     <Route path="*" component={Page404} />
   </Router>
