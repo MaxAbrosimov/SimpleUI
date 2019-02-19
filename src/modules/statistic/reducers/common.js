@@ -1,7 +1,7 @@
 import {convertTimestampToDate} from "src/utils/timeUtils";
 import {SUCCESS, SUCCESS_OPACITY, FAIL, FAIL_OPACITY} from "src/constants/COLORS";
 
-export const convertLineData = data => {
+export const convertLineData = (data =[]) => {
     const success = [];
     const fail = [];
     const labels = [];
@@ -33,11 +33,11 @@ export const convertChartData = data => ({
     chartData: {
         labels: ['success', 'fail', 'skipped'],
         centerConfig: {
-            text: data.success + data.fail + data.skipped + ' Tests',
+            text: data.totalTestsCount + ' Tests',
         },
         datasets: [
             {
-                data: [ data.success, data.fail, data.skipped],
+                data: [ data.successfullTestsCount, data.failedTestsCount, data.skippedTestsCount],
                 backgroundColor: [SUCCESS, FAIL],
                 hoverBackgroundColor: [SUCCESS, FAIL],
             }

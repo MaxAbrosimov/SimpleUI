@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production webpack-dev-server"
   },
   "keywords": [],
   "author": "mabrosimov",
@@ -28,6 +29,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chart.js": "^2.7.3",
+    "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "moment": "^2.24.0",
     "prop-types": "^15.6.0",

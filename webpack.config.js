@@ -1,13 +1,17 @@
 var path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const config = require('./src/config-dev.json');
+const configDev = require('./src/config-dev.json');
+const configProd = require('./src/config-dev.json');
+
+const node_env = process.env.NODE_ENV;
+const isProduction = node_env === 'production';
+const config = isProduction ? configProd : configDev;
 
 module.exports = {
-    mode: 'development',
-
+    mode: node_env,
     performance: {
-        hints: process.env.NODE_ENV === 'production' ? "warning" : false
+        hints: isProduction ? "warning" : false
     },
     entry: [
         'react-hot-loader/patch',
@@ -24,12 +28,25 @@ module.exports = {
     },
     context: path.resolve(__dirname, 'src'),
     devServer: {
-        contentBase: path.resolve(__dirname, 'public/assets'),
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+        },
+        contentBase: './',
         //stats: 'errors-only',
         open: true,
-        //port: 8080,
+        port: config.port,
         compress: true,
         hot: true,
+        proxy: {
+            '/': {
+                target: config.backendUrl,
+                secure: false,
+                prependPath: false
+            }
+        },
+        publicPath: config.baseUrl,
         historyApiFallback: true
     },
     devtool: 'inline-source-map',

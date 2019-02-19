@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu } from 'semantic-ui-react';
-import { browserHistory } from 'react-router';
+import { Link } from 'react-router';
 import * as ROUTES from 'src/constants/ROUTES';
 import './styles.css';
 import 'src/styles.css';
 import {WHITE} from "src/constants/COLORS";
 
 const renderMenuItem = (route, path) => (
-    <Menu.Item
-        name={route.name}
-        style={{color: WHITE}}
-        active={path === route.path}
-        onClick={() => browserHistory.push(route)}
-    />
+    <Menu.Item active={path === route.path}>
+        <Link style={{color: WHITE}} to={route.path}>{route.name}</Link>
+    </Menu.Item>
 );
 
 const NavBar = ({ path }) => (

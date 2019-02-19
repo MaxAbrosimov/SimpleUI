@@ -22,7 +22,7 @@ export default function testReducer(state = initialState, action) {
             return {
                 ...state,
                 lineData: convertLineData(action.data.time),
-                chartData: convertChartData(action.data.total),
+                chartData: convertChartData(action.data),
                 isFetching: false,
                 isLoaded: true
             };

@@ -15,5 +15,6 @@ export const SIGNUP = {
     path: '/signup'
 };
 export const HOME = {
-    path: '/'
+    path: '/',
+    name: 'Home',
 };

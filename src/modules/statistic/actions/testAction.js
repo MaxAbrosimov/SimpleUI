@@ -1,9 +1,11 @@
+import {post, get} from 'axios';
 import { FETCH_ENV_DATA,
     FETCH_TEST_DATA,
     FETCH_ENV_TEST_DATA,
     ENV_DATA_LOADED,
     TEST_DATA_LOADED,
-    ENV_TEST_DATA_LOADED
+    ENV_TEST_DATA_LOADED,
+    ERROR_FETCH_TEST_DATA
 } from '../constants/ActionTypes';
 
 const staticTestData = {
@@ -67,9 +69,10 @@ const staticEnvTestData = [
     {
         envId: 1,
         total: {
-            success: 14,
-            fail: 1,
-            skipped: 10
+            totalTestsCount: 25,
+            successfullTestsCount: 14,
+            failedTestsCount: 1,
+            skippedTestsCount: 10
         },
         time: [
             {
@@ -113,9 +116,10 @@ const staticEnvTestData = [
     {
         envId: 2,
         total: {
-            success: 27,
-            fail: 0,
-            skipped: 3
+            totalTestsCount: 30,
+            successfullTestsCount: 27,
+            failedTestsCount: 0,
+            skippedTestsCount: 3
         },
         time: [
             {
@@ -177,6 +181,12 @@ export function loadEnvironment() {
 export function loadData() {
     return function(dispatch){
         dispatch({ type: FETCH_TEST_DATA });
-        return dispatch({ type: TEST_DATA_LOADED, data : staticTestData });
+        return get('/statistics/')
+            .then(function(response){
+                dispatch({ type: TEST_DATA_LOADED, data : response.data })
+            })
+            .catch(function(){
+                dispatch({ type: ERROR_FETCH_TEST_DATA })
+            })
     }
 }
